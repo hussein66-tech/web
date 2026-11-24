@@ -669,3 +669,91 @@ body {
     }
 
 }
+
+
+/* =====================================================
+   Verify Page (index.html) + Patient Greeting (added)
+   ===================================================== */
+
+.verify-page {
+    max-width: 520px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.verify-page .page-header {
+    text-align: center;
+}
+
+.verify-page .page-header h1 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.verify-page .page-header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.verify-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid #e2ebef;
+    box-shadow: 0 5px 20px rgba(50, 80, 95, 0.08);
+}
+
+.verify-card h2 {
+    margin: 0 0 22px;
+    font-size: 27px;
+    color: #263d46;
+}
+
+.verify-buttons {
+    margin-top: 25px;
+}
+
+.verify-buttons .confirm-btn {
+    width: 100%;
+}
+
+.form-success {
+    background-color: #f1f7f9;
+    border-right: 4px solid #567C8D;
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: #426575;
+    font-weight: bold;
+    margin: 5px 0 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.patient-greeting {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #71858e;
+    font-size: 15px;
+}
+
+@media (max-width: 600px) {
+
+    .patient-greeting {
+        display: none;
+    }
+
+    .verify-page .page-header h1 {
+        font-size: 25px;
+    }
+
+    .verify-card {
+        padding: 22px;
+    }
+
+}
