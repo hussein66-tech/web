@@ -361,6 +361,13 @@ if (appointmentForm) {
 
 }
 
+
+/* =====================================================
+   Services Page (added)
+   Cards are built from the departments data above,
+   so prices always match the booking page.
+   ===================================================== */
+
 const servicesGrid =
     document.getElementById("servicesGrid");
 
@@ -460,6 +467,13 @@ if (servicesGrid) {
     showServices();
 
 }
+
+
+/* =====================================================
+   Payment Page (added)
+   Reads the booking details from the URL and shows
+   the payment form. Nothing is sent or stored.
+   ===================================================== */
 
 const paymentForm =
     document.getElementById("paymentForm");
@@ -732,5 +746,106 @@ if (paymentForm) {
                 : "services.html";
 
         });
+
+}
+
+
+/* =====================================================
+   Verify Page (index.html) + Patient Greeting (added)
+   Saves the patient name for this browser tab only,
+   then moves on to the services page.
+   ===================================================== */
+
+/* Greeting in the header (all pages) */
+
+let savedPatientName = null;
+
+try {
+    savedPatientName = sessionStorage.getItem("patientName");
+} catch (error) {
+    savedPatientName = null;
+}
+
+const headerLink = document.querySelector(
+    ".site-header .header-link"
+);
+
+if (savedPatientName && headerLink) {
+
+    const actions = document.createElement("div");
+    actions.className = "header-actions";
+
+    const greeting = document.createElement("span");
+    greeting.className = "patient-greeting";
+    greeting.textContent = "أهلاً، " + savedPatientName;
+
+    headerLink.parentNode.insertBefore(actions, headerLink);
+    actions.appendChild(greeting);
+    actions.appendChild(headerLink);
+
+}
+
+
+/* Verify form */
+
+const verifyForm =
+    document.getElementById("verifyForm");
+
+if (verifyForm) {
+
+    const nameInput = document.getElementById("name");
+    const nidInput = document.getElementById("nid");
+    const verifyError = document.getElementById("message");
+    const verifySuccess = document.getElementById("successMessage");
+
+    verifyForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const nid = nidInput.value.trim();
+
+        // Name: Arabic or English letters and spaces only
+        const nameRule = /^[\u0600-\u06FFa-zA-Z\s]+$/;
+
+        // National ID: digits only
+        const nidRule = /^[0-9]+$/;
+
+        verifyError.hidden = true;
+        verifySuccess.hidden = true;
+
+        if (!nameRule.test(name)) {
+
+            verifyError.textContent =
+                "الاسم لازم يكون حروف عربي أو إنجليزي بس";
+            verifyError.hidden = false;
+
+            return;
+        }
+
+        if (!nidRule.test(nid)) {
+
+            verifyError.textContent =
+                "الرقم القومي لازم يكون أرقام بس";
+            verifyError.hidden = false;
+
+            return;
+        }
+
+        try {
+            sessionStorage.setItem("patientName", name);
+        } catch (error) {
+            // Storage blocked: continue without saving the name
+        }
+
+        verifySuccess.textContent =
+            "تمام، البيانات صحيحة. جاري تحويلك لصفحة الخدمات...";
+        verifySuccess.hidden = false;
+
+        setTimeout(function () {
+            window.location.href = "services.html";
+        }, 900);
+
+    });
 
 }
