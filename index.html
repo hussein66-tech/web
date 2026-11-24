@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>مستشفى الوقاية</title>
+
+    <link rel="stylesheet" href="appointments.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">🏥 مستشفى الوقاية</a>
+            <a href="services.html" class="header-link">كل الخدمات</a>
+        </div>
+    </header>
+
+    <main class="container verify-page">
+
+        <section class="page-header">
+            <h1>مرحبًا بك في مستشفى الوقاية</h1>
+            <p>اكتب بياناتك للتحقق قبل ما تختار القسم وتحجز ميعادك</p>
+        </section>
+
+        <section class="verify-card">
+
+            <h2>بيانات المريض</h2>
+
+            <form id="verifyForm" novalidate>
+
+                <div class="form-group">
+                    <label for="name">الاسم</label>
+                    <input
+                        type="text"
+                        id="name"
+                        autocomplete="name"
+                        placeholder="اكتب اسمك"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="nid">الرقم القومي</label>
+                    <input
+                        type="text"
+                        id="nid"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="اكتب الرقم القومي"
+                        required
+                    >
+                </div>
+
+                <p class="form-error" id="message" hidden></p>
+                <p class="form-success" id="successMessage" hidden></p>
+
+                <div class="buttons verify-buttons">
+                    <button type="submit" class="confirm-btn">
+                        تحقق
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        © مستشفى الوقاية
+    </footer>
+
+    <script src="appointments.js"></script>
+
+</body>
+
+</html>
